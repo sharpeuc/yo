@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { GLOBAL } from 'src/app/services/GLOBAL';
 import { ProductoService } from 'src/app/services/producto.service';
 declare var iziToast;
+declare var jQuery: any;
+declare var $:any;
 
 
 @Component({
@@ -18,6 +20,7 @@ export class IndexProductoComponent implements OnInit {
   public url;
   public page = 1;
   public pageSize = 10;
+  public load_btn = false;
 
   constructor(
 
@@ -101,6 +104,53 @@ resetear(){
   this.filtro = '';
   this.init_data();
 
+
+}
+
+eliminar(id){
+
+  this.load_btn = true;
+  this._productoService.eliminar_producto_admin(id, this.token).subscribe(
+
+    response=>{
+      console.log(response);
+
+      iziToast.show({
+        title: 'SUCCESS',
+        titleColor: 'green',
+        color: 'white',
+        class: 'text-Success',
+        position: 'topLeft',
+        message: 'producto eliminado correctamente'
+  
+      });
+
+      $('#delete-'+id).modal('hide');
+      $('.modal-backdrop').removeClass('show');
+
+      this.load_btn = false;
+
+      this.init_data();
+
+
+    },
+
+  error=>{
+    iziToast.show({
+      title: 'SUCCESS',
+      titleColor: 'green',
+      color: 'white',
+      class: 'text-Success',
+      position: 'topLeft',
+      message: 'ocurrió un error en el servidor'
+
+    });
+    console.log(error)
+    this.load_btn = false;
+
+
+  }
+  )
 
 }
 

@@ -15,6 +15,10 @@ import { EditClienteComponent } from './components/clientes/edit-cliente/edit-cl
 import { CreateProductoComponent } from './components/productos/create-producto/create-producto.component';
 import { IndexProductoComponent } from './components/productos/index-producto/index-producto.component';
 import { UpdateProductoComponent } from './components/productos/update-producto/update-producto.component';
+import { InventarioProductoComponent } from './components/productos/inventario-producto/inventario-producto.component';
+import { CreateCuponComponent } from './components/cupones/create-cupon/create-cupon.component';
+import { IndexCuponComponent } from './components/cupones/index-cupon/index-cupon.component';
+import { UpdateCuponComponent } from './components/cupones/update-cupon/update-cupon.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,11 @@ import { UpdateProductoComponent } from './components/productos/update-producto/
     EditClienteComponent,
     CreateProductoComponent,
     IndexProductoComponent,
-    UpdateProductoComponent
+    UpdateProductoComponent,
+    InventarioProductoComponent,
+    CreateCuponComponent,
+    IndexCuponComponent,
+    UpdateCuponComponent
   ],
   imports: [
     BrowserModule,
