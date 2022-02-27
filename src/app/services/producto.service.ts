@@ -52,6 +52,8 @@ obtener_producto_admin(id, token):Observable<any> {
 }
 actualizar_producto_admin(data, id, token):Observable<any> {
 
+  console.log(data.portada);
+
   if(data.portada){
     let headers = new HttpHeaders({'Authorization':token});
 
@@ -107,7 +109,17 @@ registro_inventario_producto_admin(data, token):Observable<any> {
 
 
 
+actualizar_producto_variedades_admin(data, id, token):Observable<any> {
+  let headers = new HttpHeaders({'content-Type':'application/json', 'Authorization': token});
+  return this._http.put(this.url+ 'actualizar_producto_variedades_admin/'+id, data,{headers: headers});
+
+
+  }
+  
+
 }
+
+
 
 
 
