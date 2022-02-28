@@ -16,6 +16,25 @@
 
     <div class="card-body">
       <div style="max-width: 48rem;">
+
+        <div class="row mb-5">
+          <div class="col-md-4" style="padding-right: 0px;">
+            <img [src]="url +'obtener_portada/'+producto.portada" class="img-thumbnail rounded-0" alt="Square image">
+          </div>
+          <div class="col-md-8" style="padding-left: 0px;">
+          <div class="card" style="height:100% !important; background: #f5eeee">
+            <div class="card-body">
+              <h3 class="card-product-title text-truncate mb-2">
+                <a class="nav-link mb-3">{{producto.titulo}}</a>
+                <p class="text-muted">{{producto.descripcion}}</p>
+                <div class="d-flex align-items-center">
+                  <span class="h5 d-inline-block mb-0 text-danger">${{producto.precio}}</span>
+                </div>
+              </h3>
+            </div>
+          </div>
+        </div>
+        </div>
         
         
         <div class="form-group row align-items-center">
@@ -76,8 +95,14 @@
 </div>
            
     <div class="card-footer">
-      <button class="btn btn-primary mr-3" type="button" (click)="actualizar()">Guardar cambios</button>
+      <button *ngIf="!load_btn" class="btn btn-primary mr-3" type="button" (click)="actualizar()">Guardar cambios</button>
+      <button *ngIf="load_btn" type="button" class="btn btn-secondary">
+        <span class="spinner-grow spinner-grow-sm me-2" role="status" aria-hidden="true"></span>
+        Cargando...
+      </button>
     </div>
+  </div>
+    
     
 
 

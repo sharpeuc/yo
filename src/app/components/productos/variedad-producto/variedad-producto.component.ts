@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { GLOBAL } from 'src/app/services/GLOBAL';
 import { ProductoService } from 'src/app/services/producto.service';
 declare var iziToast;
 
@@ -15,6 +16,8 @@ export class VariedadProductoComponent implements OnInit {
   public token;
 
   public nueva_variedad = '';
+  public load_btn = false;
+  public url;
 
   constructor(
     private _route : ActivatedRoute,
@@ -23,7 +26,8 @@ export class VariedadProductoComponent implements OnInit {
   ) { 
    
    this.token = localStorage.getItem('token');
-    this._route.params.subscribe(
+    this.url = GLOBAL.url;
+   this._route.params.subscribe(
       params=>{
         this.id = params['id'];
         
@@ -97,6 +101,7 @@ export class VariedadProductoComponent implements OnInit {
 
     if( this.producto.variedades.length >= 1){
 
+      this.load_btn = true;
       this._productoService.actualizar_producto_variedades_admin({
 
         titulo_variedad: this.producto.titulo_variedad,
@@ -109,6 +114,17 @@ export class VariedadProductoComponent implements OnInit {
 
         response=>{
           console.log(response);
+          iziToast.show({
+            title: 'SUCCESS',
+            titleColor: 'green',
+            color: 'white',
+            class: 'text-Success',
+            position: 'topLeft',
+            message: 'se actualizaron correctamente las variedades'
+      
+          });
+          
+          this.load_btn = false;
         }
 
 
